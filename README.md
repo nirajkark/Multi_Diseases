@@ -12,3 +12,4 @@ Technologies Used
 Python
 Machine Learning Libraries (e.g., logistic-regression,random_forest,decisiontree)
 streamlit(for the web interface)
+link: https://predicct.streamlit.app/
