@@ -1,18 +1,17 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Dec 25 15:51:10 2023
-
-@author: DELL
-"""
 
 import pickle 
 import streamlit as st
 from streamlit_option_menu import option_menu
+import os
 
 
-diabetes_model=pickle.load(open('C:/Users/DELL/Desktop/dep/diabetes_model.sav', 'rb'))
-heart_disease_model=pickle.load(open('C:/Users/DELL/Desktop/dep/heart_disease_model.sav', 'rb'))
-parkinsons_model=pickle.load(open('C:/Users/DELL/Desktop/dep/parkinsons_model.sav', 'rb'))
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+models_dir = os.path.join(current_dir, 'trained_models')
+
+diabetes_model = pickle.load(open(os.path.join(models_dir, 'diabetes_model.sav'), 'rb'))
+heart_disease_model = pickle.load(open(os.path.join(models_dir, 'heart_disease_model.sav'), 'rb'))
+parkinsons_model = pickle.load(open(os.path.join(models_dir, 'parkinsons_model.sav'), 'rb'))
 
 
 with st.sidebar:
@@ -24,11 +23,11 @@ with st.sidebar:
                          default_index=0)
 if (selected == 'Diabetes Prediction'):
     
-    # page title
+    
     st.title('Diabetes Prediction using ML')
     
     
-    # getting the input data from the user
+   
     col1, col2, col3 = st.columns(3)
     
     with col1:
@@ -59,7 +58,7 @@ if (selected == 'Diabetes Prediction'):
     # code for Prediction
     diab_diagnosis = ''
     
-    # creating a button for Prediction
+    
     
     if st.button('Diabetes Test Result'):
         diab_prediction = diabetes_model.predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
@@ -74,7 +73,7 @@ if (selected == 'Diabetes Prediction'):
 
 
 
-# Heart Disease Prediction Page
+
 if (selected == 'Heart Disease Prediction'):
     
     # page title
@@ -124,10 +123,10 @@ if (selected == 'Heart Disease Prediction'):
         
      
      
-    # code for Prediction
+    
     heart_diagnosis = ''
     
-    # creating a button for Prediction
+   
     
     if st.button('Heart Disease Test Result'):
         heart_prediction = heart_disease_model.predict([[age, sex, cp, trestbps, chol, fbs, restecg,thalach,exang,oldpeak,slope,ca,thal]])                          
@@ -218,7 +217,7 @@ if (selected == "parkinsons prediction"):
         
     
     
-    # code for Prediction
+    
     parkinsons_diagnosis = ''
     
     # creating a button for Prediction    
